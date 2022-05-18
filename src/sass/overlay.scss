@@ -1,0 +1,169 @@
+.button-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 50px;
+  height: 50px;
+  transition: 0.3s transform ease-in-out;
+  z-index: 1000;
+  background-color: $bg;
+  &:hover {
+    &::before {
+      transform: rotate(45deg) scale(1.5);
+    }
+    &::after {
+      transform: rotate(-45deg) scale(1.5);
+    }
+  }
+  &::before,
+  &::after {
+    position: absolute;
+    content: " ";
+    height: 19px;
+    width: 3px;
+    background-color: $txt;
+    left: 24px;
+    top: 15px;
+  }
+  &::before {
+    transform: rotate(45deg);
+  }
+  &::after {
+    transform: rotate(-45deg);
+  }
+}
+.overlay-logo {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+.overlay-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .overlay-content {
+    width: 80%;
+    h1,
+    h2,
+    h3,
+    p {
+      color: $txt;
+      text-align: left;
+      font-family: "Lato", "Trebuchet MS", sans-serif;
+      text-shadow: 1px 1px 3px rgba($bg, 0.8);
+    }
+    .overlay-body {
+      max-width: 650px;
+    }
+    .overlay-title {
+      font-size: 60px;
+      font-family: "Good Headline Pro Condensed", "Lato", "Trebuchet MS",
+        sans-serif;
+      font-weight: 900;
+      line-height: 60px;
+      letter-spacing: 0.02em;
+      padding: 0;
+      margin-top: 25px;
+      margin-bottom: 10px;
+    }
+    .overlay-subtitle {
+      font-size: 50px;
+      line-height: 50px;
+      padding: 0;
+      margin-bottom: 0;
+      font-weight: 700;
+      text-transform: none;
+    }
+    .overlay-paragraph {
+      font-family: "Good Headline Pro Condensed", "Lato", "Trebuchet MS",
+        sans-serif;
+      font-size: 30px;
+      line-height: 44px;
+      padding: 0;
+      margin-bottom: 0;
+      font-weight: 700;
+    }
+    .overlay-form {
+      margin-top: 25px;
+      .overlay-amounts {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+      .form-item {
+        width: auto;
+        input[type="radio"] {
+          display: none;
+          &:checked + label {
+            background-color: $accent;
+            color: $txt;
+            border: 3px solid $bg;
+          }
+        }
+        label {
+          padding: 0;
+          font-weight: 700;
+          background-color: #1e2022;
+          border: 3px solid transparent;
+          border-radius: 50%;
+          height: 66px;
+          width: 66px;
+          color: $accent;
+          font-size: 1.1rem;
+          text-align: center;
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          box-sizing: border-box;
+          transition: all 0.3s ease-in-out;
+        }
+        .form-text {
+          font-family: "Lato", "Trebuchet MS", sans-serif;
+          font-size: 1.1rem;
+          font-weight: 700;
+          height: 50px;
+          width: 100%;
+          padding: 10px 15px;
+          border: 3px solid transparent;
+          background-color: $txt;
+          color: $bg;
+          box-sizing: border-box;
+          transition: 0.3s border-color ease-in-out;
+          &:focus {
+            border-color: $accent;
+          }
+        }
+      }
+      button {
+        width: 100%;
+        height: 50px;
+        background-color: $bg;
+        color: $txt;
+        font-size: 1.1rem;
+        font-weight: 700;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background-color: $accent;
+          color: $txt;
+        }
+      }
+    }
+    hr {
+      margin: 25px 0;
+      padding: 0;
+      border: none;
+      border-top: 5px solid $txt;
+      width: 200px;
+    }
+  }
+}
