@@ -34,6 +34,8 @@ Every option should be set as a data attribute on the `script` tag. All options 
 - **data-other_label** - Label of Other Amount field. Defaults to `$ other`. If empty, the field will be hidden.
 - **data-donation_form** - URL of the donation page.
 - **data-trigger** - How the user will trigger the overlay. Defaults to `0`, which means the overlay will automatically trigger when the page loads. Check the **Trigger Options** section for more information.
+- **data-start_unix** - Unix seconds timestamp of when to start showing the overlay. Defaults to `0` for no start time.
+- **data-end_unix** - Unix seconds timestamp of when to stop showing the overlay. Defaults to `Infinity` for no end time.
 
 ## Trigger Options
 

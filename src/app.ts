@@ -5,6 +5,8 @@ export class App {
   private amounts = [35, 75, 100, 250, 500];
   private overlay: HTMLElement;
   private triggered = false;
+  private start_unix = 0; // assume time window already started.
+  private end_unix = Infinity; // assume time window never ends.
   private options: { [key: string]: string } = {
     cookie_name: "hideOverlay",
     cookie_expiry: "1", // 1 day
@@ -21,6 +23,9 @@ export class App {
     "script[src*='oceana-en-overlay.js']"
   );
   constructor() {
+
+    this.loadOptions();
+
     if (!this.shouldRun()) {
       console.log("Overlay Not Running");
       return;
@@ -38,11 +43,19 @@ export class App {
 
   private shouldRun() {
     const hideOverlay = !!parseInt(crumbs.get(this.options.cookie_name)); // Get cookie
-    return !hideOverlay;
+    if ( false === hideOverlay ) {
+      // If overlay should be shown, also check valid time window.
+      const now_unix = ( Date.now() / 1000 ); // unix seconds, not milliseconds.
+      // If the time window has started but not yet ended, show the overlay.
+      return (
+        now_unix >= this.start_unix
+        && now_unix < this.end_unix
+      );
+    }
+    return false;
   }
 
   private run() {
-    this.loadOptions();
     this.renderOverlay();
     // Uncomment next line before publishing
     // this.setCookie();
@@ -225,6 +238,8 @@ export class App {
     this.amounts = this.getScriptData("amounts", "35,75,100,250,500")
       .split(",")
       .map((amount) => parseInt(amount));
+    this.start_unix = Number(this.getScriptData("start_unix", String(this.start_unix)));
+    this.end_unix = Number(this.getScriptData("end_unix", String(this.end_unix)));
     // Load options from script tag
     for (const key in this.options) {
       if (key in this.options) {
