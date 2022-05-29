@@ -1,7 +1,7 @@
 import { crumbs } from "./crumbs";
 
 export class App {
-  private overlayID = "oceana-" + Math.random().toString(36).substring(7);
+  private overlayID = "foursite-en-overlay-" + Math.random().toString(36).substring(7);
   private amounts = [35, 75, 100, 250, 500];
   private overlay: HTMLElement;
   private triggered = false;
@@ -10,17 +10,18 @@ export class App {
   private options: { [key: string]: string } = {
     cookie_name: "hideOverlay",
     cookie_expiry: "1", // 1 day
+    logo: "",
     title: "",
     subtitle: "",
     paragraph: "",
     button_label: "Donate Now",
     image: "",
     other_label: "$ other",
-    donation_form: "https://act.oceana.org/page/95375/donate/1",
+    donation_form: "",
     trigger: "0", // int-seconds, px-scroll location, %-scroll location, exit-mouse leave
   };
   private scriptTag = document.querySelector(
-    "script[src*='oceana-en-overlay.js']"
+    "script[src*='foursite-en-overlay.js']"
   );
   constructor() {
 
@@ -57,17 +58,24 @@ export class App {
 
   private run() {
     this.renderOverlay();
-    // Uncomment next line before publishing
-    // this.setCookie();
+    if ( Number(this.options.cookie_expiry) > 0 ) {
+      this.setCookie();
+    }
   }
   private renderOverlay() {
+    let overlayLogoMarkup = "";
+    if ( this.options.logo.length ) {
+      overlayLogoMarkup = `
+        <div class="overlay-logo">
+          <img loading="lazy" src="${this.options.logo}">
+        </div>
+      `;
+    }
     const markup = `
             <div class="overlay-container">
                 <a href="#" class="button-close"></a>
                 <div class="overlay-content">
-                    <div class="overlay-logo">
-                    <img loading="lazy" alt="Oceana" src="https://oceana.org/wp-content/uploads/sites/18/2021/05/cropped-logo_en.png">
-                    </div>
+                    ${overlayLogoMarkup}
                     <div class="overlay-body">
                         <h1 class="overlay-title">${this.options.title}</h1>
                         <h2 class="overlay-subtitle">${
@@ -94,7 +102,7 @@ export class App {
     const overlay = document.createElement("div");
     overlay.id = this.overlayID;
     overlay.classList.add("is-hidden");
-    overlay.classList.add("oceana-en-overlay");
+    overlay.classList.add("foursite-en-overlay");
     if (this.options.image) {
       overlay.classList.add("has-image");
       overlay.style.backgroundImage = `url(${this.options.image})`;

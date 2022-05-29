@@ -11,7 +11,7 @@ module.exports = {
     usedExports: true,
   },
   output: {
-    filename: "oceana-en-overlay.js",
+    filename: "foursite-en-overlay.js",
     path: path.resolve(__dirname, "dist"),
   },
   module: {

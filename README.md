@@ -1,4 +1,4 @@
-# Oceana Engaging Networks Overlay
+# Engaging Networks Overlay
 
 This project makes it easy to add an Overlay with a custom Engaging Networks Form to your website.
 
@@ -14,6 +14,7 @@ This project makes it easy to add an Overlay with a custom Engaging Networks For
   data-subtitle="This is my subtitle"
   data-paragraph="This is my paragraph"
   data-image="https://source.unsplash.com/random/1920x1080"
+  data-donation_form="https://act.oceana.org/page/95375/donate/1"
 ></script>
 ```
 
@@ -23,8 +24,9 @@ This project makes it easy to add an Overlay with a custom Engaging Networks For
 
 Every option should be set as a data attribute on the `script` tag. All options are optional, except for the `data-title`, `data-subtitle`, `data-paragraph`, and `data-image` options, which are empty by default.
 
-- **data-cookie_name**: The name of the cookie that will be used to store the closed state. Defaults to `hideOverlay`.
-- **data-cookie_expiry**: The number of days until the cookie expires. Default is `1`.
+- **data-cookie_name** - The name of the cookie that will be used to store the closed state. Defaults to `hideOverlay`.
+- **data-cookie_expiry** - The number of days until the cookie expires. Defaults to `1`. Set to `0` to not set the cookie, and to always allow the overlay to show.
+- **data-logo** - The src URL for the logo image in the top-left of the overlay.
 - **data-title** - Title of the overlay.
 - **data-subtitle** - Subtitle of the overlay.
 - **data-paragraph** - Text of the overlay.
