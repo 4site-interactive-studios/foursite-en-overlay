@@ -30,6 +30,7 @@ Every option should be set as a data attribute on the `script` tag. All options 
 - **data-paragraph** - Text of the overlay.
 - **data-image** - Background Image of the overlay.
 - **data-button_label** - Label of the donate button. Defaults to `Donate Now`.
+- **data-amounts** - CSV of numeric amount preset options. Defaults to `35, 75, 100, 250, 500`.
 - **data-other_label** - Label of Other Amount field. Defaults to `$ other`. If empty, the field will be hidden.
 - **data-donation_form** - URL of the donation page.
 - **data-trigger** - How the user will trigger the overlay. Defaults to `0`, which means the overlay will automatically trigger when the page loads. Check the **Trigger Options** section for more information.
