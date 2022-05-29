@@ -12,7 +12,7 @@ body.has-modal {
   left: 0;
   bottom: 0;
   z-index: 2147483645;
-  background-color: rgba($bg, 0.7);
+  background-color: var(--bg-overlay-color, rgba($bg, 0.7));
   width: 100vw;
   height: 100vh;
   transition: top 0.4s ease-in-out;

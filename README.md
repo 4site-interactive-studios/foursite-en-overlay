@@ -41,12 +41,69 @@ Every option should be set as a data attribute on the `script` tag. All options 
 - **data-max_width** - CSS dimension to set the overlay modal's max-width. Defaults to full screen.
 - **data-max_height** - CSS dimension to set the overlay modal's max-height. Defaults to full screen.
 
-## Trigger Options
+### Trigger Options
 
 - **ANY_NUMBER** (example: `2`) - The overlay will open after NUMBER seconds.
 - **ANY_PIXEL** (example `400px`) - The overlay will open when the user scrolls the page for PIXEL pixels.
 - **ANY_PERCENT** (example `50%`) - The overlay will open when the user scrolls the page for PERCENT of the page.
 - **exit** (example `exit`) - The overlay will open when the user moves their mouse out of the page (exit intent).
+
+### Style Variables
+
+Some CSS variables are used throughout the overlay's styles. They are as follows:
+
+```scss
+// Backgrounds.
+
+--bg-img-overlay-start-color
+--bg-img-overlay-end-color
+
+--bg-overlay-color // the shadow outside of the overlay modal.
+
+// Typography.
+
+--title-color
+--title-font // font shorthand rule.
+
+--subtitle-color
+--subtitle-font
+
+--paragraph-color
+--paragraph-font
+
+// Elements.
+
+--divider-border
+
+// Amount Buttons.
+
+--amount-button-bg-color
+--amount-button-color
+--amount-button-border // full border shorthand declaration.
+--amount-button-border-radius // full length unit, such as 50% or 3em.
+
+--amount-button-hover-bg-color
+--amount-button-hover-color
+--amount-button-hover-border
+--amount-button-hover-border-radius
+
+--amount-button-selected-bg-color
+--amount-button-selected-color
+--amount-button-selected-border
+--amount-button-selected-border-radius
+
+// Submit Button.
+
+--submit-button-bg-color
+--submit-button-color
+--submit-button-border
+--submit-button-border-radius
+
+--submit-button-hover-bg-color
+--submit-button-hover-color
+--submit-button-hover-border
+--submit-button-hover-border-radius
+```
 
 ## Development
 
