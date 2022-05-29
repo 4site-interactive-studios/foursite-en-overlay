@@ -13,9 +13,6 @@ body.has-modal {
   bottom: 0;
   z-index: 2147483645;
   background-color: rgba($bg, 0.7);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   width: 100vw;
   height: 100vh;
   transition: top 0.4s ease-in-out;
@@ -23,17 +20,6 @@ body.has-modal {
   display: flex;
   justify-content: center;
   align-items: center;
-  &::before {
-    content: " ";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(rgba($bg, 0.1), rgba($bg, 0.6));
-    z-index: -1;
-    transition: opacity 0.4s ease-in-out;
-  }
   &.is-hidden {
     top: -100vh;
   }

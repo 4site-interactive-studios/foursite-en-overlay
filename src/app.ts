@@ -19,6 +19,8 @@ export class App {
     other_label: "$ other",
     donation_form: "",
     trigger: "0", // int-seconds, px-scroll location, %-scroll location, exit-mouse leave
+    max_width: "",
+    max_height: "",
   };
   private scriptTag = document.querySelector(
     "script[src*='foursite-en-overlay.js']"
@@ -103,27 +105,38 @@ export class App {
     overlay.id = this.overlayID;
     overlay.classList.add("is-hidden");
     overlay.classList.add("foursite-en-overlay");
-    if (this.options.image) {
-      overlay.classList.add("has-image");
-      overlay.style.backgroundImage = `url(${this.options.image})`;
-    }
     overlay.innerHTML = markup;
+
+    // Configure overlay modal.
+    const overlayContainer: HTMLDivElement = overlay.querySelector(".overlay-container");
+
+    if (this.options.image) {
+      overlayContainer.classList.add("has-image");
+      overlayContainer.style.backgroundImage = `url(${this.options.image})`;
+    }
+    // Configure max dimensions.
+    if ( this.options.max_width.length || this.options.max_height.length ) {
+      overlayContainer.style.maxWidth = this.options.max_width;
+      overlayContainer.style.maxHeight = this.options.max_height;
+      overlay.addEventListener("click", (e: MouseEvent | KeyboardEvent) => {
+        if ((e.target as HTMLDivElement).id === this.overlayID) {
+          this.close(e);
+        }
+      });
+    }
+
+    // Configure closeButton.
     const closeButton = overlay.querySelector(
       ".button-close"
     ) as HTMLLinkElement;
     closeButton.addEventListener("click", this.close.bind(this));
-    // I've commented out the following line because the overlay is fullscreen, so there's no "click outside to close" functionality
-
-    // overlay.addEventListener("click", (e: MouseEvent | KeyboardEvent) => {
-    //   if ((e.target as HTMLDivElement).id === this.overlayID) {
-    //     this.close(e);
-    //   }
-    // });
     document.addEventListener("keyup", (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         closeButton.click();
       }
     });
+
+    // Configure otherAmount input.
     const otherAmount = overlay.querySelector(
       "input[name='transaction.donationAmt'].form-text"
     );

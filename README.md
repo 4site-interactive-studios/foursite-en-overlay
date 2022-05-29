@@ -38,6 +38,8 @@ Every option should be set as a data attribute on the `script` tag. All options 
 - **data-trigger** - How the user will trigger the overlay. Defaults to `0`, which means the overlay will automatically trigger when the page loads. Check the **Trigger Options** section for more information.
 - **data-start_unix** - Unix seconds timestamp of when to start showing the overlay. Defaults to `0` for no start time.
 - **data-end_unix** - Unix seconds timestamp of when to stop showing the overlay. Defaults to `Infinity` for no end time.
+- **data-max_width** - CSS dimension to set the overlay modal's max-width. Defaults to full screen.
+- **data-max_height** - CSS dimension to set the overlay modal's max-height. Defaults to full screen.
 
 ## Trigger Options
 
