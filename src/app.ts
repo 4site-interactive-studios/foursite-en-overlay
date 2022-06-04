@@ -136,20 +136,27 @@ export class App {
       }
     });
 
-    // Configure otherAmount input.
-    const otherAmount = overlay.querySelector(
+    // Configure amount inputs.
+    const otherAmountInput = overlay.querySelector(
       "input[name='transaction.donationAmt'].form-text"
-    );
-    if (otherAmount) {
-      otherAmount.addEventListener("focus", () => {
-        // Uncheck all other amounts
-        const inputs = overlay.querySelectorAll(
-          "input[type='radio']"
-        ) as NodeListOf<HTMLInputElement>;
-        for (let i = 0; i < inputs.length; i++) {
-          const input = inputs[i];
-          input.checked = false;
-        }
+    ) as HTMLInputElement;
+    const presetAmountRadios = overlay.querySelectorAll(
+      "input[name='transaction.donationAmt'][type='radio']"
+    ) as NodeListOf<HTMLInputElement>;
+    if (otherAmountInput && presetAmountRadios) {
+      otherAmountInput.addEventListener("focus", () => {
+        // Uncheck preset amount selections.
+        presetAmountRadios.forEach(radioInput => {
+          radioInput.checked = false;
+        });
+      });
+    }
+    if (presetAmountRadios) {
+      presetAmountRadios.forEach(radioInput => {
+        radioInput.addEventListener("change", () => {
+          // Clear custom amount input when preset amount is selected.
+          otherAmountInput.value = "";
+        });
       });
     }
 
