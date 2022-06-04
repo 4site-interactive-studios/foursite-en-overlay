@@ -160,6 +160,18 @@ export class App {
       });
     }
 
+    // Intercept form submission.
+    const overlayForm = overlay.querySelector(".overlay-form form") as HTMLFormElement;
+    overlayForm.addEventListener("formdata", (e) => {
+      for (const [name, value] of e.formData.entries()) {
+        // Ensure empty values for existing names are not submitted.
+        // This also ensures only one value is submitted per field.
+        if ("" !== value) {
+          e.formData.set(name, value);
+        }
+      }
+    });
+
     this.overlay = overlay;
     document.body.appendChild(overlay);
     const triggerType = this.getTriggerType(this.options.trigger);
