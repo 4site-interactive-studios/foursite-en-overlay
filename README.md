@@ -9,12 +9,12 @@ This project makes it easy to add an Overlay with a custom Engaging Networks For
 ```html
 <script
   defer="defer"
-  src="https://aaf1a18515da0e792f78-c27fdabe952dfc357fe25ebf5c8897ee.ssl.cf5.rackcdn.com/1997/oceana-en-overlay.js"
+  src="https://{MY_EN_ASSETS_URL}/foursite-en-overlay.js"
   data-title="This is my title!"
   data-subtitle="This is my subtitle"
   data-paragraph="This is my paragraph"
   data-image="https://source.unsplash.com/random/1920x1080"
-  data-donation_form="https://act.oceana.org/page/95375/donate/1"
+  data-donation_form="https://{MY_EN_URL}"
 ></script>
 ```
 
@@ -118,7 +118,4 @@ Project's code is on the `src/app.ts` file. Styling changes must be on `src/sass
 1. `npm run build` - Builds the project
 2. `npm run start` - Watch for changes and rebuilds the project
 
-It's going to create a `dist` folder, where you can get the `oceana-en-overlay.js` file and publish it.
-
-Currently it's published on:  
-https://aaf1a18515da0e792f78-c27fdabe952dfc357fe25ebf5c8897ee.ssl.cf5.rackcdn.com/1997/oceana-en-overlay.js
+It's going to create a `dist` folder, where you can get the `foursite-en-overlay.js` file and publish it.
