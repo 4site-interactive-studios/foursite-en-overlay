@@ -22,6 +22,7 @@ export class App {
     trigger: "0", // int-seconds, px-scroll location, %-scroll location, exit-mouse leave
     max_width: "",
     max_height: "",
+    cta_type: "fundraising",
   };
   private scriptTag = document.querySelector(
     "script[src*='foursite-en-overlay.js']"
@@ -121,6 +122,12 @@ export class App {
           this.close(e);
         }
       });
+    }
+
+    if (this.options.cta_type == "general") {
+      overlayContainer
+        .querySelector(".button-primary")
+        .classList.add("general-cta");
     }
 
     // Configure closeButton.
@@ -244,7 +251,11 @@ export class App {
     }
     amounts += `</div>`;
 
-    return amounts;
+    if (this.options.cta_type == "fundraising") {
+      return amounts;
+    } else {
+      return "";
+    }
   }
 
   private getTriggerType(trigger: string) {
