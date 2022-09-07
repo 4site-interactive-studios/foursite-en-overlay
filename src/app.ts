@@ -1,7 +1,8 @@
 import { crumbs } from "./crumbs";
 
 export class App {
-  private overlayID = "foursite-en-overlay-" + Math.random().toString(36).substring(7);
+  private overlayID =
+    "foursite-en-overlay-" + Math.random().toString(36).substring(7);
   private amounts = [35, 75, 100, 250, 500];
   private overlay: HTMLElement;
   private triggered = false;
@@ -26,7 +27,6 @@ export class App {
     "script[src*='foursite-en-overlay.js']"
   );
   constructor() {
-
     this.loadOptions();
 
     if (!this.shouldRun()) {
@@ -46,27 +46,24 @@ export class App {
 
   private shouldRun() {
     const hideOverlay = !!parseInt(crumbs.get(this.options.cookie_name)); // Get cookie
-    if ( false === hideOverlay ) {
+    if (false === hideOverlay) {
       // If overlay should be shown, also check valid time window.
-      const now_unix = ( Date.now() / 1000 ); // unix seconds, not milliseconds.
+      const now_unix = Date.now() / 1000; // unix seconds, not milliseconds.
       // If the time window has started but not yet ended, show the overlay.
-      return (
-        now_unix >= this.start_unix
-        && now_unix < this.end_unix
-      );
+      return now_unix >= this.start_unix && now_unix < this.end_unix;
     }
     return false;
   }
 
   private run() {
     this.renderOverlay();
-    if ( Number(this.options.cookie_expiry) > 0 ) {
+    if (Number(this.options.cookie_expiry) > 0) {
       this.setCookie();
     }
   }
   private renderOverlay() {
     let overlayLogoMarkup = "";
-    if ( this.options.logo.length ) {
+    if (this.options.logo.length) {
       overlayLogoMarkup = `
         <div class="overlay-logo">
           <img loading="lazy" src="${this.options.logo}">
@@ -108,14 +105,15 @@ export class App {
     overlay.innerHTML = markup;
 
     // Configure overlay modal.
-    const overlayContainer: HTMLDivElement = overlay.querySelector(".overlay-container");
+    const overlayContainer: HTMLDivElement =
+      overlay.querySelector(".overlay-container");
 
     if (this.options.image) {
       overlayContainer.classList.add("has-image");
       overlayContainer.style.backgroundImage = `url(${this.options.image})`;
     }
     // Configure max dimensions.
-    if ( this.options.max_width.length || this.options.max_height.length ) {
+    if (this.options.max_width.length || this.options.max_height.length) {
       overlayContainer.style.maxWidth = this.options.max_width;
       overlayContainer.style.maxHeight = this.options.max_height;
       overlay.addEventListener("click", (e: MouseEvent | KeyboardEvent) => {
@@ -146,13 +144,13 @@ export class App {
     if (otherAmountInput && presetAmountRadios) {
       otherAmountInput.addEventListener("focus", () => {
         // Uncheck preset amount selections.
-        presetAmountRadios.forEach(radioInput => {
+        presetAmountRadios.forEach((radioInput) => {
           radioInput.checked = false;
         });
       });
     }
     if (presetAmountRadios) {
-      presetAmountRadios.forEach(radioInput => {
+      presetAmountRadios.forEach((radioInput) => {
         radioInput.addEventListener("change", () => {
           // Clear custom amount input when preset amount is selected.
           otherAmountInput.value = "";
@@ -161,7 +159,9 @@ export class App {
     }
 
     // Intercept form submission.
-    const overlayForm = overlay.querySelector(".overlay-form form") as HTMLFormElement;
+    const overlayForm = overlay.querySelector(
+      ".overlay-form form"
+    ) as HTMLFormElement;
     overlayForm.addEventListener("formdata", (e) => {
       for (const [name, value] of e.formData.entries()) {
         // Ensure empty values for existing names are not submitted.
@@ -169,6 +169,22 @@ export class App {
         if ("" !== value) {
           e.formData.set(name, value);
         }
+      }
+
+      // Append action query strings as hidden input fields
+      const actionURL = new URL(overlayForm.action);
+      const actionKey: string[] = [];
+      const actionVal: string[] = [];
+      actionURL.search
+        .slice(1)
+        .split("&")
+        .forEach((item) => {
+          actionKey.push(item.split("=")[0]);
+          actionVal.push(item.split("=")[1]);
+        });
+
+      for (let i = 0; i < actionKey.length; ++i) {
+        e.formData.set(actionKey[i], actionVal[i]);
       }
     });
 
@@ -227,6 +243,7 @@ export class App {
         `;
     }
     amounts += `</div>`;
+
     return amounts;
   }
 
@@ -278,8 +295,12 @@ export class App {
     this.amounts = this.getScriptData("amounts", "35,75,100,250,500")
       .split(",")
       .map((amount) => parseInt(amount));
-    this.start_unix = Number(this.getScriptData("start_unix", String(this.start_unix)));
-    this.end_unix = Number(this.getScriptData("end_unix", String(this.end_unix)));
+    this.start_unix = Number(
+      this.getScriptData("start_unix", String(this.start_unix))
+    );
+    this.end_unix = Number(
+      this.getScriptData("end_unix", String(this.end_unix))
+    );
     // Load options from script tag
     for (const key in this.options) {
       if (key in this.options) {
