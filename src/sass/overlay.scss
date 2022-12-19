@@ -54,7 +54,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(var(--bg-img-overlay-start-color, rgba($bg, 0.1)), var(--bg-img-overlay-end-color, rgba($bg, 0.6)));
+    background-image: linear-gradient(
+      var(--bg-img-overlay-start-color, rgba($bg, 0.1)),
+      var(--bg-img-overlay-end-color, rgba($bg, 0.6))
+    );
     z-index: 0;
     transition: opacity 0.4s ease-in-out;
   }
@@ -68,7 +71,6 @@
       color: $txt;
       text-align: left;
       font-family: "Lato", "Trebuchet MS", sans-serif;
-      text-shadow: 1px 1px 3px rgba($bg, 0.8);
     }
     .overlay-body {
       max-width: 650px;
@@ -79,21 +81,37 @@
       margin-top: 25px;
       margin-bottom: 10px;
       color: var(--title-color, $txt);
-      font: var(--title-font, 900 60px/60px "Good Headline Pro Condensed", "Lato", "Trebuchet MS", sans-serif);
+      font: var(
+        --title-font,
+        900 60px/60px "Good Headline Pro Condensed",
+        "Lato",
+        "Trebuchet MS",
+        sans-serif
+      );
     }
     .overlay-subtitle {
       padding: 0;
       margin-bottom: 0;
       text-transform: none;
       color: var(--subtitle-color, $txt);
-      font: var(--subtitle-font, 700 50px/50px "Lato", "Trebuchet MS", sans-serif);
+      font: var(
+        --subtitle-font,
+        700 50px/50px "Lato",
+        "Trebuchet MS",
+        sans-serif
+      );
     }
     .overlay-paragraph {
       padding: 0;
       margin-bottom: 0;
       color: var(--paragraph-color, $txt);
-      font: var(--paragraph-font, 700 30px/44px "Good Headline Pro Condensed", "Lato", "Trebuchet MS",
-        sans-serif);
+      font: var(
+        --paragraph-font,
+        700 30px/44px "Good Headline Pro Condensed",
+        "Lato",
+        "Trebuchet MS",
+        sans-serif
+      );
     }
     .overlay-form {
       margin-top: 25px;
