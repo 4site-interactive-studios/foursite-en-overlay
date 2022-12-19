@@ -197,6 +197,10 @@
           border-radius: var(--submit-button-hover-border-radius, 0);
         }
       }
+
+      button.general-cta {
+        width: auto;
+      }
     }
     hr {
       margin: 25px 0;

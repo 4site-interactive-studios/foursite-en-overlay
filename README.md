@@ -40,6 +40,7 @@ Every option should be set as a data attribute on the `script` tag. All options 
 - **data-end_unix** - Unix seconds timestamp of when to stop showing the overlay. Defaults to `Infinity` for no end time.
 - **data-max_width** - CSS dimension to set the overlay modal's max-width. Defaults to full screen.
 - **data-max_height** - CSS dimension to set the overlay modal's max-height. Defaults to full screen.
+- **data-cta_type** - Sets the call to action type (`general` or `fundraising`). Hides donation amounts if set to `general`. Defaults to `fundraising`.
 
 ### Trigger Options
 
